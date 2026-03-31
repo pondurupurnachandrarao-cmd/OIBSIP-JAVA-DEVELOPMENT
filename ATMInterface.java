@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 class ATM {
-    private String userId = "user123";
-    private String userPin = "1234";
+    private final String userId = "purna123";
+    private final String userPin = "987";
     private double balance = 10000.0;
-    private ArrayList<String> transactionHistory = new ArrayList<>();
+    private final ArrayList<String> transactionHistory = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
 
     public boolean login() {
@@ -78,26 +78,16 @@ class ATM {
             int choice = sc.nextInt();
 
             switch (choice) {
-                case 1:
-                    showTransactionHistory();
-                    break;
-                case 2:
-                    withdraw();
-                    break;
-                case 3:
-                    deposit();
-                    break;
-                case 4:
-                    transfer();
-                    break;
-                case 5:
-                    System.out.println("Current Balance: " + balance);
-                    break;
-                case 6:
+                case 1 -> showTransactionHistory();
+                case 2 -> withdraw();
+                case 3 -> deposit();
+                case 4 -> transfer();
+                case 5 -> System.out.println("Current Balance: " + balance);
+                case 6 -> {
                     System.out.println("Thank you for using ATM");
                     return;
-                default:
-                    System.out.println("Invalid choice");
+                }
+                default -> System.out.println("Invalid choice");
             }
         }
     }
