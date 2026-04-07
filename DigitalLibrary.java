@@ -120,10 +120,11 @@ public class DigitalLibrary {
             int choice = sc.nextInt();
 
             switch (choice) {
-                case 1:
+                case 1 -> {
                     System.out.print("Enter Admin Password: ");
                     String pass = sc.next();
                     if (pass.equals("admin")) {
+                        adminLoop:
                         while (true) {
                             System.out.println("\nAdmin Menu");
                             System.out.println("1. Add Book");
@@ -132,17 +133,23 @@ public class DigitalLibrary {
                             System.out.println("4. Back");
                             int ch = sc.nextInt();
 
-                            if (ch == 1) lib.addBook(sc);
-                            else if (ch == 2) lib.deleteBook(sc);
-                            else if (ch == 3) lib.viewBooks();
-                            else break;
+                            switch (ch) {
+                                case 1 -> lib.addBook(sc);
+                                case 2 -> lib.deleteBook(sc);
+                                case 3 -> lib.viewBooks();
+                                case 4 -> {
+                                    break adminLoop;
+                                }
+                                default -> System.out.println("Invalid choice");
+                            }
                         }
                     } else {
                         System.out.println("Wrong Password");
                     }
-                    break;
+                }
 
-                case 2:
+                case 2 -> {
+                    userLoop:
                     while (true) {
                         System.out.println("\nUser Menu");
                         System.out.println("1. View Books");
@@ -152,20 +159,25 @@ public class DigitalLibrary {
                         System.out.println("5. Back");
                         int ch = sc.nextInt();
 
-                        if (ch == 1) lib.viewBooks();
-                        else if (ch == 2) lib.searchBook(sc);
-                        else if (ch == 3) lib.issueBook(sc);
-                        else if (ch == 4) lib.returnBook(sc);
-                        else break;
+                        switch (ch) {
+                            case 1 -> lib.viewBooks();
+                            case 2 -> lib.searchBook(sc);
+                            case 3 -> lib.issueBook(sc);
+                            case 4 -> lib.returnBook(sc);
+                            case 5 -> {
+                                break userLoop;
+                            }
+                            default -> System.out.println("Invalid choice");
+                        }
                     }
-                    break;
+                }
 
-                case 3:
+                case 3 -> {
                     System.out.println("Exiting...");
                     return;
+                }
 
-                default:
-                    System.out.println("Invalid choice");
+                default -> System.out.println("Invalid choice");
             }
         }
     }
